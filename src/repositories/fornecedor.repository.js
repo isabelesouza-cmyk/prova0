@@ -38,6 +38,43 @@ function createFornecedorRepository(novoFornecedor) {
 
 }
 
+function findAllFornecedorRepository() {
+    return new Promise((resolve, reject) => {
+        db.all(
+            `SELECT * FROM fornecedor`,
+            [],
+            (error, rows) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(rows);
+                }
+            }
+        );
+    });
+}
+
+function findFornecedorByIdRepository(id) {
+    return new Promise((resolve, reject) => {
+        db.get(
+            `SELECT 
+                * 
+            FROM fornecedor
+            WHERE id = ?`,
+            [id],
+            (error, row) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(row);
+                }
+            }
+        );
+    });
+}
+
 export default {
-    createFornecedorRepository
+    createFornecedorRepository,
+    findAllFornecedorRepository,
+    findFornecedorByIdRepository
 }

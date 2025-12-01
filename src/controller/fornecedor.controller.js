@@ -11,6 +11,29 @@ async function createFornecedorController(request, response) {
     }
 }
 
+async function findAllFornecedorController(request, response) {
+    try {
+        const fornecedor = await fornecedorServices.findAllFornecedorServices();
+        response.status(200).send({fornecedor});
+    } catch(error) {
+        response.status(404).send(error.message);
+    }
+}
+
+async function findFornecedorByIdController(request, response) {
+
+    const {id} = request.params;
+
+    try {
+        const fornecedor = await fornecedorServices.findFornecedorByIdServices(id);
+        response.status(200).send({fornecedor});
+    } catch(error) {
+        response.status(404).send(error.message);
+    }
+}
+
 export default {
-    createFornecedorController
+    createFornecedorController,
+    findAllFornecedorController,
+    findFornecedorByIdController
 }
