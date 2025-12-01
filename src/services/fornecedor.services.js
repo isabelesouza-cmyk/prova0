@@ -10,7 +10,6 @@ async function createFornecedorServices(novoFornecedor) {
     return fornecedor;
 }
 
-
 async function findAllFornecedorServices() {
     const fornecedor = await fornecedorRepository.findAllFornecedorRepository();
     return fornecedor;
@@ -25,10 +24,25 @@ async function findFornecedorByIdServices(id) {
 
     return fornecedor;
 }
+async function updateFornecedorServices(id, novoFornecedor) {
+    const fornecedor = await fornecedorRepository.findFornecedorByIdRepository(id);
 
+    if (!fornecedor) {
+        throw new Error("Fornecedor não encontrado!");
+    }
+
+    const fornecedorAtualizado = await fornecedorRepository.updateFornecedorRepository(id, novoFornecedor);
+
+    if (!fornecedorAtualizado) {
+        throw new Error("Erro ao atualizar o fornecedor!");
+    }
+    
+    return fornecedorAtualizado;
+}
 
 export default {
     createFornecedorServices,
     findAllFornecedorServices,
-    findFornecedorByIdServices
+    findFornecedorByIdServices,
+    updateFornecedorServices
 }

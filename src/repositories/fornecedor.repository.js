@@ -73,8 +73,39 @@ function findFornecedorByIdRepository(id) {
     });
 }
 
+function updateFornecedorRepository(id, fornecedor) {
+    return new Promise((resolve, reject) => {
+
+        const {
+            cnpj,
+            nome,
+            email
+        } = fornecedor;
+
+        db.run(
+            `UPDATE fornecedor
+            SET cnpj = ?,      
+                nome = ?,
+                email = ?
+            WHERE id = ?`,
+            [cnpj, nome, email, id],
+            (error) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve({
+                        id,
+                        ...fornecedor
+                    });
+                }
+            }
+        )
+    });
+}
+
 export default {
     createFornecedorRepository,
     findAllFornecedorRepository,
-    findFornecedorByIdRepository
+    findFornecedorByIdRepository,
+    updateFornecedorRepository
 }
