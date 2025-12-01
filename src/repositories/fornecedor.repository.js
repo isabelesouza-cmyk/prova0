@@ -2,7 +2,7 @@ import db from "../config/database.js";
 
 db.run(`
     CREATE TABLE IF NOT EXISTS fornecedor (
-        id INTEGER PRIMARY KEY UNIQUE NOT NULL AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
         cnpj TEXT NOT NULL UNIQUE,
         nome TEXT NOT NULL,
         email TEXT NOT NULL UNIQUE

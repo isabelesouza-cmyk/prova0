@@ -1,7 +1,7 @@
 import fornecedorRepository from "../repositories/fornecedor.repository.js";
 
 async function createFornecedorServices(novoFornecedor) {
-    const fornecedor = await produtoRepository.createFornecedorRepository(novoFornecedor);
+    const fornecedor = await fornecedorRepository.createFornecedorRepository(novoFornecedor);
     return fornecedor;
 }
 
