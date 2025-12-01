@@ -103,9 +103,30 @@ function updateFornecedorRepository(id, fornecedor) {
     });
 }
 
+function deleteFornecedorRepository(id) {
+    return new Promise((resolve, reject) => {
+        db.run(
+            `DELETE FROM fornecedor
+            WHERE id = ?`,
+            [id],
+            (error) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve({
+                        message: "Fornecedor excluído com sucesso!"
+                    });
+                }
+            }
+        );
+    });
+}
+
+
 export default {
     createFornecedorRepository,
     findAllFornecedorRepository,
     findFornecedorByIdRepository,
-    updateFornecedorRepository
+    updateFornecedorRepository,
+    deleteFornecedorRepository
 }

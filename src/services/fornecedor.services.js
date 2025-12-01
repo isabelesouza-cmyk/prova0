@@ -40,9 +40,26 @@ async function updateFornecedorServices(id, novoFornecedor) {
     return fornecedorAtualizado;
 }
 
+async function deleteFornecedorServices(id) {
+    const fornecedor = await fornecedorRepository.findFornecedorByIdRepository(id);
+
+    if (!fornecedor) {
+        throw new Error("Fornecedor não encontrado!");
+    }
+
+    const mensagemRetorno =  await fornecedorRepository.deleteFornecedorRepository(id);
+
+    if (!mensagemRetorno) {
+        throw new Error("Erro ao deletar fornecedor!");
+    }
+
+    return mensagemRetorno;
+}
+
 export default {
     createFornecedorServices,
     findAllFornecedorServices,
     findFornecedorByIdServices,
-    updateFornecedorServices
+    updateFornecedorServices,
+    deleteFornecedorServices
 }

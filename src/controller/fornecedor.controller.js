@@ -39,17 +39,29 @@ async function updateFornecedorController(request, response) {
 
     try {
         const fornecedor = await fornecedorServices.updateFornecedorServices(id, novoFornecedor);
-        response.status(201).send({fornecedor});
+        response.status(200).send({fornecedor});
     } catch(error) {
         response.status(400).send(error.message);
     }
 
 }
 
+async function deleteFornecedorController(request, response) {
+    
+    const {id} = request.params;
+
+    try {
+        const retorno = await fornecedorServices.deleteFornecedorServices(id);
+        response.status(200).send({retorno});
+    } catch(error) {
+        response.status(400).send(error.message);
+    }
+}
 
 export default {
     createFornecedorController,
     findAllFornecedorController,
     findFornecedorByIdController,
-    updateFornecedorController
+    updateFornecedorController,
+    deleteFornecedorController
 }
